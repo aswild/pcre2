@@ -564,7 +564,7 @@ SLJIT_API_FUNC_ATTRIBUTE void sljit_free_unused_memory_exec(void);
 
 #elif (defined SLJIT_CONFIG_X86_64 && SLJIT_CONFIG_X86_64)
 
-#ifndef _WIN64
+#if !defined _WIN64 && !defined __CYGWIN__
 #define SLJIT_NUMBER_OF_REGISTERS 12
 #define SLJIT_NUMBER_OF_SAVED_REGISTERS 6
 #define SLJIT_LOCALS_OFFSET_BASE (sizeof(sljit_sw))
@@ -572,7 +572,7 @@ SLJIT_API_FUNC_ATTRIBUTE void sljit_free_unused_memory_exec(void);
 #define SLJIT_NUMBER_OF_REGISTERS 12
 #define SLJIT_NUMBER_OF_SAVED_REGISTERS 8
 #define SLJIT_LOCALS_OFFSET_BASE ((4 + 2) * sizeof(sljit_sw))
-#endif /* _WIN64 */
+#endif /* _WIN64 || __CYGWIN__ */
 
 #elif (defined SLJIT_CONFIG_ARM_V5 && SLJIT_CONFIG_ARM_V5) || (defined SLJIT_CONFIG_ARM_V7 && SLJIT_CONFIG_ARM_V7)
 
@@ -644,7 +644,7 @@ SLJIT_API_FUNC_ATTRIBUTE void sljit_free_unused_memory_exec(void);
 	(SLJIT_NUMBER_OF_REGISTERS - SLJIT_NUMBER_OF_SAVED_REGISTERS)
 
 #define SLJIT_NUMBER_OF_FLOAT_REGISTERS 6
-#if (defined SLJIT_CONFIG_X86_64 && SLJIT_CONFIG_X86_64) && (defined _WIN64)
+#if (defined SLJIT_CONFIG_X86_64 && SLJIT_CONFIG_X86_64) && (defined _WIN64 || defined __CYGWIN__)
 #define SLJIT_NUMBER_OF_SAVED_FLOAT_REGISTERS 1
 #else
 #define SLJIT_NUMBER_OF_SAVED_FLOAT_REGISTERS 0
