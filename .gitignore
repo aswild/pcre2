@@ -39,3 +39,4 @@ src/stamp-h1
 *.o
 *.pc
 *.swp
+*.exe
