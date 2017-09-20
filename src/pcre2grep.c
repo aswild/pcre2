@@ -73,6 +73,13 @@ POSSIBILITY OF SUCH DAMAGE.
 #include <fcntl.h>             /* For _O_BINARY */
 #endif
 
+/* cygwin versions of functions */
+#ifdef __CYGWIN__
+#define _O_BINARY O_BINARY
+#define _spawnvp spawnvp
+#define _fileno fileno
+#endif /* __CYGWIN__ */
+
 #ifdef SUPPORT_PCRE2GREP_CALLOUT
 #ifdef WIN32
 #include <process.h>
@@ -151,7 +158,7 @@ any messages written to stdout must have \r\n as their line terminator. This is
 handled by using STDOUT_NL as the newline string. We also use a normal double
 quote for the example, as single quotes aren't usually available. */
 
-#ifdef WIN32
+#if defined WIN32 && !defined __CYGWIN__
 #define STDOUT_NL  "\r\n"
 #define QUOT       "\""
 #else
