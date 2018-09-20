@@ -847,4 +847,7 @@ EXTRA_DIST += \
   CMakeLists.txt \
   config-cmake.h.in
 
+# WILD ADD - shortcut to install only the library and no docs or programs
+libinstall: install-libLTLIBRARIES install-pkgconfigDATA install-includeHEADERS install-nodist_includeHEADERS
+
 ## end Makefile.am
