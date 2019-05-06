@@ -141,7 +141,7 @@ AC_ARG_ENABLE(debug,
 AC_ARG_ENABLE(jit,
               AS_HELP_STRING([--enable-jit],
                              [enable Just-In-Time compiling support]),
-              , enable_jit=no)
+              , enable_jit=auto)
 
 # This code enables JIT if the hardware supports it.
 if test "$enable_jit" = "auto"; then
